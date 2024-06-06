@@ -25,7 +25,7 @@ function start() {
 
     // If both exist, ask the user if they want to use the existing credentials
     if (ytkey && ytclientid) {
-        var useExisting = confirm("YouTube API key and client ID found in local storage. Do you want to use the existing credentials?");
+        var useExisting = confirm("You've provided a YouTube API key and client ID before. Do you want to use that data?");
 
         if (useExisting) {
             // If the user wants to use existing credentials, no need to prompt again
