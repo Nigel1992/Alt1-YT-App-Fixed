@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Youtube for RuneApps</title>
+	<link rel="icon" href="icon.png" type="image/x-icon" />
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" type="text/css" href="https://runeapps.org/runeappslib.js" />
+	<link rel="stylesheet" type="text/css" href="https://runeapps.org/nis/nis.css" />
+	<link rel="stylesheet" type="text/css" href="https://runeapps.org/nis/alt1-currentskin/skinstyle.css" />
+	<link rel="stylesheet" type="text/css" href="https://runeapps.org/apps/alt1/youtube/style.css" />
+	<script type="text/javascript" src="https://runeapps.org/runeappslib.js"></script>
+	<script type="text/javascript" src="https://runeapps.org/alt1lib.js"></script>
+	<script type="text/javascript" src="scripts.js"></script>
+	<script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
+</head>
+<body onload="start()" class="nis" onresize="resize();">
+	<div id="expandbutton" class="nissmallimagebutton" onclick="togglemenu();"></div>
+	<div id="controls" class="expanded nisborder">
+		<div id="controlhead">
+			<div id="ytinputcontainer">
+				<input id="ytinput" class="nisinput" placeholder="Search Youtube" onkeydown="if(event.keyCode==13){mainwnd.lookupvideo();}" />
+			</div>
+			<div id="ytinputbutton" class="nissmallimagebutton" title="Search videos" onclick="mainwnd.lookupvideo()"></div>
+			<div class="nisseperator" style="bottom:0px;">
+				<div style="width:10px; height:1px; float:right"></div>
+				<div id="contenttab0" class="contenttab activetab" onclick="mainwnd.settab(0);">Search</div>
+				<div id="contenttab1" class="contenttab" onclick="mainwnd.settab(1);">Channel</div>
+				<div id="contenttab2" class="contenttab" onclick="mainwnd.settab(2);">Subs</div>
+			</div>
+		</div>
+		<div id="controlcontent">
+			<div id="tabcontent0" class="tabcontent" style="display:block;">
+				<div id="ytoutput" class="vidlist">
+					<div class="vidliststatus">No keywords entered.</div>
+				</div>
+			</div>
+			<div id="tabcontent1" class="tabcontent">
+				<div id="channelinfo" class="capped">
+					<div id="channelthumb"></div>
+					<div id="channeltitle"></div>
+					<div id="channeltext"></div>
+				</div>
+				<div id="channeltexttoggle" onclick="mainwnd.togglechanneltext();">Show more</div>
+				<div id="channeltextsep" class="nisseperator" style="position:initial; display:none;"></div>
+				<div id="channelvidlist" class="vidlist">
+					<div class="vidliststatus">Use the search option to select a channel</div>
+				</div>
+			</div>
+			<div id="tabcontent2" class="tabcontent">
+				<div id="authbox">
+					<div class="nistext" style="font-family:sans-serif; margin:10px; text-align:center;">Authenticate with youtube to show your subscriptions.</div>
+					<div class="nisbutton" onclick="mainwnd.startauth();">Authenticate</div>
+					<div id="authcodepart" style="display:none;">
+						<div id="authstatus" class="nistext" style="font-family:sans-serif; margin:10px; text-align:center;">Your browser will open and ask you to give alt1 permission to view your account details. Please paste the returned code here to finish the log-in.</div>
+						<input class="nisinput" id="authcodebox" placeholder="Paste your code here" style="margin:0px 10px; width:calc(100% - 30px)" onkeydown="if (event.keyCode == 13) { mainwnd.validateauth(this.value); }" />
+						<div class="nisbutton" onclick="mainwnd.validateauth(document.getElementById('authcodebox').value);">Finish</div>
+					</div>
+				</div>
+				<div id="subvidlist" class="vidlist">
+					<div class="vidliststatus">Log in to show subscriptions.</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="ytcontrols">
+		<div class="nisseperator" style="position:absolute; top:24px;"></div>
+		<div id="progressouter">
+			<div id="progressinner"></div>
+		</div>
+		<div id="playbutton" onclick="if(this.classList.contains('playing')){ytplayer.pauseVideo();}else{ytplayer.playVideo();}"></div>
+		<div id="volumeicon" onclick="if(this.classList.contains('muted')){ytplayer.unMute(); this.classList.remove('muted');}else{ytplayer.mute(); this.classList.add('muted')}"></div>
+		<div id="volumeouter">
+			<div id="volumeinner"></div>
+		</div>
+		<div id="vidtext">
+			<span id="time"></span>
+			<span style="width:10px; height:1px; display:inline-block;"></span>
+			<span id="videotitle"></span>
+		</div>
+	</div>
+	<div id="ytvid"></div>  
+</body>
+</html>
