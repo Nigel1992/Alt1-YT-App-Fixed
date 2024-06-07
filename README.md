@@ -26,7 +26,7 @@ I've found a way to get the app working again using my own YouTube API Key. You 
 
 - Implement login/authentication feature
 
----
+## BELOW CAN BE IGNORES FOR NOW - FUTURE UPDATE
 
 ### Instructions for Creating Your Own API Key and Client ID
 
