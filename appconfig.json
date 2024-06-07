@@ -12,6 +12,6 @@
 	"maxHeight": 406,
 	"requestHandlers": [ ],
 	"activators": [	],
-	"permissions": "pixel,gamestate,overlay"
+	"permissions": "overlay"
 
 }
