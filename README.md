@@ -3,7 +3,7 @@ See: https://runeapps.org/forums/viewtopic.php?pid=5473#p5473
 ----------
 # ALT1 YouTube App
 
-I've found a way to get the app working again using my own YouTube API Key. You can now access the new YouTube app using the following link: alt1://addapp/https://nigel1992.github.io/Alt1-YT-App-Fixed/appconfig.json
+I've found a way to get the app working again using my own YouTube API Key. You can now access the new YouTube app using the following link:   alt1://addapp/https://nigel1992.github.io/Alt1-YT-App-Fixed/appconfig.json  
 (Simply paste into your browser's navigation bar and hit ENTER)
 
 ## Currently Working
