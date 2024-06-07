@@ -30,7 +30,8 @@ You can now access the new YouTube app using the following link: ```alt1://addap
   - I'm currently developing a feature to allow users to bypass this limit by using their own accounts, enabling access to their subscriptions, etc.
 - History and activity of the YouTube App can be seen by anyone, as it uses a public account/API key.
 - Some livestreams that have recently finished may not be accessible immediately. Please try again later.
-  - (*) This includes searches and views.
+  
+(*) This includes searches and views.
 
 
 ## Screenshots
