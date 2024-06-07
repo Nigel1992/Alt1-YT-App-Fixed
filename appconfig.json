@@ -1,5 +1,5 @@
 {
-	"appName": "Astrolume's YouTube Plugin",
+	"appName": "Astrolume's YT Plugin",
 	"description": "Watch YouTube while you play RuneScape! [v1.0]",
 	"appUrl": "./index.html",
 	"configUrl": "./appconfig.json",
