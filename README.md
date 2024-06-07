@@ -4,7 +4,7 @@ See: https://runeapps.org/forums/viewtopic.php?pid=5473#p5473
 # ALT1 YouTube App
 
 Great news - I've taken a look at the old YouTube app and got the app back in action with some simple fixes.  
-You can now access the new YouTube app using the following link: ```alt1://addapp/https://nigel1992.github.io/Alt1-YT-App-Fixed/appconfig.json``` or use the link ```https://nigel1992.github.io/Alt1-YT-App-Fixed``` in Alt1 Browser, and click ADD APP.  
+You can now access the new YouTube app using the following link: ```alt1://addapp/https://github.com/Nigel1992/Alt1-YouTube-App/appconfig.json``` or use the link ```https://github.com/Nigel1992/Alt1-YouTube-App``` in Alt1 Browser, and click ADD APP.  
 (Simply paste into your browser's navigation bar and hit ENTER)
 
 
