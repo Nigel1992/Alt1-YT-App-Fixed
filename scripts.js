@@ -41,6 +41,7 @@ function start() {
 }
 
 function promptForCredentials() {
+ytkey = prompt("For instructions, see https://runeapps.org/forums/viewtopic.php?pid=5472#p5472&#7");
     ytkey = prompt("Please enter your YouTube API key:");
     ytclientid = prompt("Please enter your YouTube client ID:");
 
