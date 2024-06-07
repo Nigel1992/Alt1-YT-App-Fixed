@@ -7,20 +7,31 @@ Great news - I've taken a look at the old YouTube app and got the app back in ac
 You can now access the new YouTube app using the following link: ```alt1://addapp/https://nigel1992.github.io/Alt1-YT-App-Fixed/appconfig.json``` or use the link ```https://nigel1992.github.io/Alt1-YT-App-Fixed``` in Alt1 Browser, and click ADD APP.  
 (Simply paste into your browser's navigation bar and hit ENTER)
 
-## Currently Working
 
-- Search functionality
-- Playback
+# Project Status
 
-## To-do
+## Currently Working:
+
+- Search
+- Playback of videos/streams (see below for exception).
+
+## Currently Not Working:
+
+- Playback of LIVE/Recently live streams (see below for more info).
+
+## To-Do:
 
 - Implement login/authentication feature
 
-## Things to Note
+## Important Notes:
 
-- This app is still in development and undergoing improvements.
-- Google has imposed a usage limit of 10,000 requests per day. Each user can watch up to 100 videos in a day, depending on the total requests made by other users. I'm currently working on a feature that allows you to use your own account, bypassing this limit and enabling access to your own subscriptions.
-- The history and activity of the YT App can be viewed by anyone since it uses a public API key.
+- This application is still under development and continuous improvement.
+- Google has imposed a limit on its usage, allowing up to 10,000 requests per day. This means that if multiple users are using the app, the number of videos each user can watch depends on the total requests made by all users.
+  - I'm currently developing a feature to allow users to bypass this limit by using their own accounts, enabling access to their subscriptions, etc.
+- History and activity of the YouTube App can be seen by anyone, as it uses a public account/API key.
+- Some livestreams that have recently finished may not be accessible immediately. Please try again later.
+  - (*) This includes searches and views.
+
 
 ## Screenshots
 
