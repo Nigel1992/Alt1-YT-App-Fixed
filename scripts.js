@@ -12,7 +12,7 @@ menuwindow = null;
 
 ytkey = "AIzaSyBAgUrmQ7ULmc0Z-uHx8AEDcxiMap9tXPI";
 //ytkey = "AIzaSyDrdMxtYEBb67Pr8bJ_k-n5MmaKqDmFEUs";
-ytclientid = "964712517370-daj1tis07f4duv48kqqvlkma97bchnug.apps.googleusercontent.com";
+ytclientid = "390088983318-02nu1t9oer4m7se0140n87jb92ig7upc.apps.googleusercontent.com";
 //ytclientid = "701506769237-tmdqopr46slbp0tk9r37jv1if8f2cfuh.apps.googleusercontent.com";
 
 authscope = "https://www.googleapis.com/auth/youtube.readonly";
