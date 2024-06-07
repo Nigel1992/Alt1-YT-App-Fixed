@@ -5,6 +5,15 @@ See: https://runeapps.org/forums/viewtopic.php?pid=5473#p5473
 
 I've found a way to get the app working again using my own YouTube API Key. You can now access the new YouTube app using the following link: [Alt1 YouTube App](alt1://addapp/https://nigel1992.github.io/Alt1-YT-App-Fixed/appconfig.json)
 
+## Currently Working
+
+- Search functionality
+- Playback
+
+## To-do
+
+- Implement login/authentication feature
+
 ## Things to Note
 
 - This app is still in development and undergoing improvements.
@@ -17,14 +26,7 @@ I've found a way to get the app working again using my own YouTube API Key. You 
 
 ![GIF Version](https://i.gyazo.com/5377bba885532afd2ae03c318ccbdc9f.gif)
 
-## Currently Working
 
-- Search functionality
-- Playback
-
-## To-do
-
-- Implement login/authentication feature
 
 ## BELOW CAN BE IGNORED FOR NOW - FUTURE UPDATE
 
