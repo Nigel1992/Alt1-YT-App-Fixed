@@ -1,31 +1,31 @@
 ///<reference path="/runeappslib.js"/>
 
-mainwnd = window; // elements in other windows refer to this
-customcontrols = false;
-controlsel = null;
-currenttab = 0;
-currentchannel = "";
-subvids = [];
+let mainwnd = window; // elements in other windows refer to this
+let customcontrols = false;
+let controlsel = null;
+let currenttab = 0;
+let currentchannel = "";
+let subvids = [];
 
-menuopen = true;
-menuwindow = null;
+let menuopen = true;
+let menuwindow = null;
 
-authscope = "https://www.googleapis.com/auth/youtube.readonly";
-accesstoken = localStorage.yt_access_token || false;
-accessexpire = +localStorage.yt_access_expire || 0;
-refreshtoken = localStorage.yt_refresh_token || false;
-temptoken = false;
+let authscope = "https://www.googleapis.com/auth/youtube.readonly";
+let accesstoken = localStorage.getItem('yt_access_token') || false;
+let accessexpire = +localStorage.getItem('yt_access_expire') || 0;
+let refreshtoken = localStorage.getItem('yt_refresh_token') || false;
+let temptoken = false;
 
 window.addEventListener("popstate", parseargs);
 
 function start() {
     // Check if YouTube API key and client ID already exist in local storage
-    ytkey = localStorage.getItem('ytkey');
-    ytclientid = localStorage.getItem('ytclientid');
+    let ytkey = localStorage.getItem('ytkey');
+    let ytclientid = localStorage.getItem('ytclientid');
 
     // If both exist, ask the user if they want to use the existing credentials
     if (ytkey && ytclientid) {
-        var useExisting = confirm("YouTube API key and client ID found in local storage. Do you want to use the existing credentials?");
+        let useExisting = confirm("YouTube API key and client ID found in local storage. Do you want to use the existing credentials?");
 
         if (useExisting) {
             // If the user wants to use existing credentials, no need to prompt again
@@ -41,8 +41,8 @@ function start() {
 }
 
 function promptForCredentials() {
-    ytkey = prompt("Please enter your YouTube API key:");
-    ytclientid = prompt("Please enter your YouTube client ID:");
+    let ytkey = prompt("Please enter your YouTube API key:");
+    let ytclientid = prompt("Please enter your YouTube client ID:");
 
     // Save the entered credentials to local storage
     localStorage.setItem('ytkey', ytkey);
@@ -63,7 +63,7 @@ function initialize() {
         e.preventDefault();
     }
 
-    var a = arglist();
+    let a = arglist();
     menuopen = !a.v;
 
     resize();
@@ -72,8 +72,7 @@ function initialize() {
 }
 
 function attemploadsubvids() {
-    var a, b, func;
-    func = function() {
+    let func = function() {
         loadsubvids();
         settab(2);
     };
@@ -90,7 +89,7 @@ function attemploadsubvids() {
 }
 
 function lookupvideo(query) {
-    var a, b, c, query, script, vidid;
+    let a, b, c, vidid;
 
     if (query) {
         elid(controlsel, "ytinput").value = query;
@@ -104,7 +103,7 @@ function lookupvideo(query) {
     }
 
     elid(controlsel, "ytoutput").innerHTML = "<div class='vidliststatus'>Loading...</div>";
-    dlpage("https://www.googleapis.com/youtube/v3/search?part=id,snippet&maxResults=20&type=channel,video&q=" + encodeURIComponent(query) + "&key=" + ytkey, function(t) {
+    dlpage("https://www.googleapis.com/youtube/v3/search?part=id,snippet&maxResults=20&type=channel,video&q=" + encodeURIComponent(query) + "&key=" + localStorage.getItem('ytkey'), function(t) {
         elid(controlsel, "ytoutput").innerHTML = "<div class='ytoutputpad'></div>" + ytcallback(t);
     });
     elid(controlsel, "ytoutput").innerHTML = "<div class='vidliststatus'>Loading...</div>";
@@ -113,22 +112,20 @@ function lookupvideo(query) {
 
 function loadchannelvids(id) {
     elid(controlsel, "channelvidlist").innerHTML = "<div class='vidliststatus'>Loading...</div>";
-    dlpage("https://www.googleapis.com/youtube/v3/search?part=id,snippet&maxResults=20&type=video&order=date&channelId=" + id + "&key=" + ytkey, function(t) {
+    dlpage("https://www.googleapis.com/youtube/v3/search?part=id,snippet&maxResults=20&type=video&order=date&channelId=" + id + "&key=" + localStorage.getItem('ytkey'), function(t) {
         elid(controlsel, "channelvidlist").innerHTML = ytcallback(t);
     });
     elid(controlsel, "channelvidlist").innerHTML = "Loading...";
 }
 
 function ytcallback(str) {
-    var a, b, c, items, data;
-
-    data = JSON.parse(str);
+    let data = JSON.parse(str);
     if (data.error) {
         clog("yt api error");
         return "Youtube Api error";
     }
 
-    items = data.items || [];
+    let items = data.items || [];
     return drawvidlist(items);
 }
 
@@ -137,8 +134,8 @@ function sameday(date1, date2) {
 }
 
 // escapes html but collapses double escaped chars
-// youtube api now prevides pre-escaped strings,
-// however it would still be retarded to inject those into html
+// youtube api now provides pre-escaped strings,
+// however, it would still be unwise to inject those into html
 // so we have to do some magic
 function escapehtmlcollapse(str) {
     str += "";
@@ -167,21 +164,20 @@ function escapehtmlcollapse(str) {
 }
 
 function drawvidlist(items, options) {
-    var a, b, c, r, items, id, type, onclicks, classes;
+    let r = "";
     if (!options) {
         options = {};
     }
-    onclicks = { "vid": "mainwnd.selectvid", "channel": "mainwnd.selectchannel" };
-    classes = { "vid": "videoitem", "channel": "channelitem" };
+    let onclicks = { "vid": "mainwnd.selectvid", "channel": "mainwnd.selectchannel" };
+    let classes = { "vid": "videoitem", "channel": "channelitem" };
 
-    var lastDate = null;
-    var yday = new Date();
+    let lastDate = null;
+    let yday = new Date();
     yday.setDate(yday.getDate() - 1);
-    var today = new Date();
-    r = "";
-    for (a in items) {
-        var snippet = items[a].snippet;
-        type = null;
+    let today = new Date();
+    for (let a in items) {
+        let snippet = items[a].snippet;
+        let type = null;
         if (items[a].id.kind == "youtube#video") {
             type = "vid";
             id = items[a].id.videoId;
@@ -194,7 +190,7 @@ function drawvidlist(items, options) {
             continue;
         }
 
-        var date = new Date(snippet.publishedAt);
+        let date = new Date(snippet.publishedAt);
         if (options.seperatedays) {
             if (!lastDate || !sameday(date, lastDate)) {
                 r += "<div class='ytlistseperator'>";
@@ -245,13 +241,12 @@ function resize() {
 }
 
 function settab(tabnr) {
-    var a, b, c;
-    a = elcl(controlsel, "contenttab");
-    for (b = 0; b < a.length; b++) {
+    let a = elcl(controlsel, "contenttab");
+    for (let b = 0; b < a.length; b++) {
         a[b].classList.remove("activetab");
     }
     a = elcl(controlsel, "tabcontent");
-    for (b = 0; b < a.length; b++) {
+    for (let b = 0; b < a.length; b++) {
         a[b].style.display = "none";
     }
 
@@ -262,22 +257,20 @@ function settab(tabnr) {
 
 function selectchannel(id) {
     currentchannel = id;
-    dlpage("https://www.googleapis.com/youtube/v3/channels?part=id,snippet&id=" + id + "&key=" + ytkey, loadedchannel);
+    dlpage("https://www.googleapis.com/youtube/v3/channels?part=id,snippet&id=" + id + "&key=" + localStorage.getItem('ytkey'), loadedchannel);
     loadchannelvids(id);
     settab(1);
 }
 
 function loadedchannel(str) {
-    var a, b, c, d, data, obj;
-
-    data = JSON.parse(str);
+    let data = JSON.parse(str);
     if (data.error) {
         clog("error loading channel data");
         return;
     }
 
-    for (var a in data.items) {
-        var obj = data.items[a];
+    for (let a in data.items) {
+        let obj = data.items[a];
         if (obj.id != currentchannel) {
             continue;
         }
@@ -291,8 +284,7 @@ function loadedchannel(str) {
 }
 
 function togglechanneltext() {
-    var expanded;
-    expanded = elid(controlsel, "channelinfo").classList.contains("capped");
+    let expanded = elid(controlsel, "channelinfo").classList.contains("capped");
     if (expanded) {
         elid(controlsel, "channelinfo").classList.remove("capped");
         elid(controlsel, "channeltexttoggle").innerHTML = "Collapse";
@@ -303,9 +295,8 @@ function togglechanneltext() {
 }
 
 function startauth() {
-    var url, q;
-    q = {
-        client_id: ytclientid,
+    let q = {
+        client_id: localStorage.getItem('ytclientid'),
         redirect_uri: "urn:ietf:wg:oauth:2.0:oob",
         scope: authscope,
         response_type: "code",
@@ -317,10 +308,9 @@ function startauth() {
 }
 
 function validateauth(code) {
-    var obj;
-    obj = {
+    let obj = {
         code: code,
-        client_id: ytclientid,
+        client_id: localStorage.getItem('ytclientid'),
         redirect_uri: "urn:ietf:wg:oauth:2.0:oob",
         grant_type: "authorization_code"
     };
@@ -332,29 +322,30 @@ function validateauth(code) {
 }
 
 function receiveauthcode(str) {
-    var a, b, obj;
-    obj = JSON.parse(str);
+    let obj = JSON.parse(str);
     if (obj.error) {
         clog("auth error");
         return;
     }
 
     if (obj.access_token) {
-        localStorage.yt_access_token = accesstoken = obj.access_token;
-        localStorage.yt_access_expire = accessexpire = Date.now() + obj.expires_in * 1000;
+        localStorage.setItem('yt_access_token', obj.access_token);
+        accesstoken = obj.access_token;
+        localStorage.setItem('yt_access_expire', Date.now() + obj.expires_in * 1000);
+        accessexpire = Date.now() + obj.expires_in * 1000;
     }
     if (obj.refresh_token) {
-        localStorage.yt_refresh_token = refreshtoken = obj.refresh_token;
+        localStorage.setItem('yt_refresh_token', obj.refresh_token);
+        refreshtoken = obj.refresh_token;
     }
 
     clog("auth code received");
 }
 
 function refreshauth(cb) {
-    var a, b, obj;
     clog("refreshing token");
-    obj = {
-        client_id: ytclientid,
+    let obj = {
+        client_id: localStorage.getItem('ytclientid'),
         refresh_token: refreshtoken,
         grant_type: "refresh_token"
     };
@@ -366,7 +357,7 @@ function refreshauth(cb) {
 
 function loadsubvids(pagetoken) {
     if (!accesstoken) {
-        clog("attemped to load sub vids without token.");
+        clog("attempted to load sub vids without token.");
         return;
     }
 
@@ -376,7 +367,7 @@ function loadsubvids(pagetoken) {
         elid(controlsel, "authbox").style.display = "none";
         subvids = [];
     }
-    var url = "https://www.googleapis.com/youtube/v3/subscriptions?part=id,snippet&mine=true&maxResults=50&order=unread&access_token=" + encodeURIComponent(accesstoken);
+    let url = "https://www.googleapis.com/youtube/v3/subscriptions?part=id,snippet&mine=true&maxResults=50&order=unread&access_token=" + encodeURIComponent(accesstoken);
     if (pagetoken) {
         url += "&pageToken=" + encodeURIComponent(pagetoken);
     }
@@ -386,7 +377,7 @@ function loadsubvids(pagetoken) {
 var subvidlist = [];
 
 function subsloaded(str) {
-    var obj = JSON.parse(str);
+    let obj = JSON.parse(str);
 
     if (obj.error) {
         qw("Error in sub response");
@@ -395,7 +386,7 @@ function subsloaded(str) {
         return;
     }
 
-    for (var a in obj.items) {
+    for (let a in obj.items) {
         if (obj.items[a].snippet.resourceId.kind != "youtube#channel") {
             continue;
         }
@@ -408,12 +399,11 @@ function subsloaded(str) {
 }
 
 function loadsubchannel(id) {
-    dlpage("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&order=date&channelId=" + id + "&key=" + ytkey, loadedsubchannel);
+    dlpage("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&order=date&channelId=" + id + "&key=" + localStorage.getItem('ytkey'), loadedsubchannel);
 }
 
 function loadedsubchannel(str) {
-    var a, b, c, obj;
-    obj = JSON.parse(str);
+    let obj = JSON.parse(str);
     if (obj.error) {
         return;
     }
@@ -429,7 +419,8 @@ function drawsubvids() {
 }
 
 function clearaccesskey() {
-    localStorage.yt_access_token = "";
+    localStorage.setItem('yt_access_token', "");
+    accesstoken = "";
 }
 
 function togglemenu() {
@@ -438,7 +429,7 @@ function togglemenu() {
 }
 
 function fixmenu() {
-    var makewindow = function() {
+    let makewindow = function() {
         if (menuwindow) {
             return;
         }
@@ -446,16 +437,16 @@ function fixmenu() {
         menuwindow.document.body.classList.add("nis");
         menuwindow.document.title = "Menu";
         menuwindow.mainwnd = mainwnd;
-        var style = menuwindow.document.createElement("link");
+        let style = menuwindow.document.createElement("link");
         style.rel = "stylesheet";
         style.href = absoluteUrl("style.css");
         menuwindow.document.head.appendChild(style);
-        var niscss = menuwindow.document.createElement("link");
+        let niscss = menuwindow.document.createElement("link");
         niscss.rel = "stylesheet";
         niscss.href = absoluteUrl("/nis/nis.css");
         menuwindow.document.head.appendChild(niscss);
 
-        var input = elid(controlsel, "ytinput");
+        let input = elid(controlsel, "ytinput");
         toggleclass(controlsel, "expanded", true);
         menuwindow.addEventListener("beforeunload", function() {
             document.body.appendChild(controlsel);
