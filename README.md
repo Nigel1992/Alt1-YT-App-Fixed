@@ -26,7 +26,7 @@ You can now access the new YouTube app using the following link: ```alt1://addap
 ## Important Notes:
 
 - This application is still under development and continuous improvement.
-- Google has imposed a limit on its usage, allowing up to 10,000 requests per day. This means that if multiple users are using the app, the number of videos each user can watch depends on the total requests made by all users.
+- Google has imposed a limit on its usage, allowing up to 10,000 requests per day. This means that if multiple users are using the app, the number of videos each user can watch depends on the total requests (*) made by all users.
   - I'm currently developing a feature to allow users to bypass this limit by using their own accounts, enabling access to their subscriptions, etc.
 - History and activity of the YouTube App can be seen by anyone, as it uses a public account/API key.
 - Some livestreams that have recently finished may not be accessible immediately. Please try again later.
