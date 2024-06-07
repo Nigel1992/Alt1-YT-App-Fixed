@@ -41,7 +41,17 @@ function start() {
 }
 
 function promptForCredentials() {
-    instructions = prompt("For instructions, see https://runeapps.org/forums/viewtopic.php?pid=5472#p5472&#7");
+    // Prompt the user with instructions including a link
+var instructions = "For instructions, see https://runeapps.org/forums/viewtopic.php?pid=5472#p5472&#7";
+instructions += "\n\nClick OK to open the instructions link in a new tab.";
+
+// Show the prompt dialog
+var confirmation = confirm(instructions);
+
+// If the user confirms, open the link in a new tab
+if (confirmation) {
+    window.open("https://runeapps.org/forums/viewtopic.php?pid=5472#p5472&#7", "_blank");
+}
     ytkey = prompt("Please enter your YouTube API key:");
     ytclientid = prompt("Please enter your YouTube client ID:");
 
