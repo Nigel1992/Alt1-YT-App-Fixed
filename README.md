@@ -14,6 +14,7 @@ You can now access the new YouTube app using the following link: ```alt1://addap
 
 - Search
 - Playback of videos/streams (see below for exception).
+- Option to use your own API info.
 
 ## Currently Not Working:
 
