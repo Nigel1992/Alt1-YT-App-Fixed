@@ -626,13 +626,15 @@ function logout() {
 					// Clear old data
 					localStorage.removeItem('apiKey');
 					localStorage.removeItem('clientId');
-					
+
+					// Show save message
+					document.getElementById("save-message").textContent = "Settings saved successfully.";
 					// Save new data
 					localStorage.setItem("apiKey", apiKey);
 					localStorage.setItem("clientId", clientId);
 					
 					// Reload the page
-					location.reload();
+					//location.reload();
 				}
 				window.addEventListener("load", function() {
 					var apiKey = localStorage.getItem("apiKey");
