@@ -628,7 +628,7 @@ function logout() {
 					localStorage.removeItem('clientId');
 
 					// Show save message
-					document.getElementById("save-message").textContent = "Settings saved successfully.";
+					document.getElementById("save-message").textContent = "Settings saved successfully./n Please reload the app.";
 					// Save new data
 					localStorage.setItem("apiKey", apiKey);
 					localStorage.setItem("clientId", clientId);
