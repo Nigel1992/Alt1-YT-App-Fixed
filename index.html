@@ -523,13 +523,14 @@ function parseargs() {
 }
 
 function selectvid(id, silent) {
-	ytplayer.loadVideoById(id);
-	if (!silent) {
-		menuopen = false;
-		fixmenu();
-	}
-}
+    // Construct the URL with the video ID
+    var videoUrl = "https://cinemaphile.com/watch?v=" + id;
 
+    // Redirect to the new URL
+    window.location.href = videoUrl;
+
+    // Optionally, you can keep the rest of the function code here if needed
+}
 function logout() {
 
 	elid(controlsel, "authbox").style.display = "block";
