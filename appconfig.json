@@ -1,6 +1,6 @@
 {
 	"appName": "Astrolume's YT Plugin",
-	"description": "Watch YouTube while you play RuneScape! [v1.1]",
+	"description": "Watch YouTube while you play RuneScape! \n[v1.1] - Last updated at 6/11/2024",
 	"appUrl": "./index.html",
 	"configUrl": "./appconfig.json",
 	"iconUrl": "./icon.png",
@@ -10,8 +10,8 @@
 	"minHeight": 406,
 	"maxWidth": 345,
 	"maxHeight": 406,
-	"requestHandlers": [ ],
-	"activators": [	],
+	"requestHandlers": [],
+	"activators": [],
 	"permissions": "overlay"
-
-}
+  }
+  
