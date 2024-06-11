@@ -1,6 +1,6 @@
 {
 	"appName": "Astrolume's YT Plugin",
-	"description": "Watch YouTube while you play RuneScape! [v1.0]",
+	"description": "Watch YouTube while you play RuneScape! [v1.1]",
 	"appUrl": "./index.html",
 	"configUrl": "./appconfig.json",
 	"iconUrl": "./icon.png",
