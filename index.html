@@ -68,47 +68,7 @@ function start() {
     settab(0);
 
     // Hide the content of tab 3 initially
-    elid('tabcontent3').style.display = 'none';
-
-    // Function to show tracking consent banner
-    function showTrackingConsentBanner() {
-        var consentBanner = document.createElement('div');
-        consentBanner.className = 'consent-banner';
-
-        var message = document.createElement('span');
-        message.textContent = 'We use Google Analytics to measure usage on our site to improve user experience.';
-        consentBanner.appendChild(message);
-
-        var acceptButton = document.createElement('button');
-        acceptButton.textContent = 'Accept';
-        acceptButton.className = 'accept-button';
-        acceptButton.addEventListener('click', function() {
-            consentBanner.style.display = 'none'; // Hide banner on accept (optional)
-
-            // Initialize Google Analytics tracking
-            gtag('event', 'consent', {
-                'event_category': 'tracking',
-                'event_label': 'user_accepted',
-                'value': 1
-            });
-
-            // Perform other actions if needed after user accepts tracking
-        });
-        consentBanner.appendChild(acceptButton);
-
-        var denyButton = document.createElement('button');
-        denyButton.textContent = 'Deny';
-        denyButton.className = 'deny-button';
-        denyButton.addEventListener('click', function() {
-            window.close(); // Close the window/tab on deny
-        });
-        consentBanner.appendChild(denyButton);
-
-        document.body.appendChild(consentBanner);
-    }
-
-    // Call the function to show the tracking consent banner when the page loads
-    showTrackingConsentBanner();
+    elid('contenttab3').style.display = 'none';  
 }
 
 
