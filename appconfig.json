@@ -1,6 +1,6 @@
 {
 	"appName": "YouTube v1.1",
-	"description": "[Fixed by Astrolume] \n\nWatch YouTube while you play RuneScape! \n\nLast updated at: 6/11/2024",
+	"description": "[Fixed by Astrolume] \n\nWatch YouTube while you play RuneScape! \n\nLast updated at: 6/23/2024",
 	"appUrl": "./index.html",
 	"configUrl": "./appconfig.json",
 	"iconUrl": "./icon.png",
