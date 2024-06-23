@@ -9,7 +9,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-KZ6G14R4FJ');
 </script>
 	
@@ -71,28 +70,47 @@ function start() {
     // Hide the content of tab 3 initially
     elid('tabcontent3').style.display = 'none';
 
-    // Function to show tracking notification
-    function showTrackingNotification() {
-        var notification = document.createElement('div');
-        notification.className = 'tracking-notification';
-        notification.innerHTML = 'We use Google Analytics to measure usage on our site in order to improve user experience. This includes tracking anonymous data about your visit. We do not use Google Analytics for personalized advertising purposes. By continuing to use our site, you consent to our use of Google Analytics.</a>.';
-        document.body.appendChild(notification);
+    // Function to show tracking consent banner
+    function showTrackingConsentBanner() {
+        var consentBanner = document.createElement('div');
+        consentBanner.className = 'consent-banner';
 
-        // Optional: Add a button to dismiss the notification if needed
-        var dismissButton = document.createElement('button');
-        dismissButton.textContent = 'Got it!';
-        dismissButton.className = 'dismiss-button';
-        notification.appendChild(dismissButton);
+        var message = document.createElement('span');
+        message.textContent = 'We use Google Analytics to measure usage on our site to improve user experience.';
+        consentBanner.appendChild(message);
 
-        // Optional: Dismiss the notification when the button is clicked
-        dismissButton.addEventListener('click', function() {
-            notification.style.display = 'none';
+        var acceptButton = document.createElement('button');
+        acceptButton.textContent = 'Accept';
+        acceptButton.className = 'accept-button';
+        acceptButton.addEventListener('click', function() {
+            consentBanner.style.display = 'none'; // Hide banner on accept (optional)
+
+            // Initialize Google Analytics tracking
+            gtag('event', 'consent', {
+                'event_category': 'tracking',
+                'event_label': 'user_accepted',
+                'value': 1
+            });
+
+            // Perform other actions if needed after user accepts tracking
         });
+        consentBanner.appendChild(acceptButton);
+
+        var denyButton = document.createElement('button');
+        denyButton.textContent = 'Deny';
+        denyButton.className = 'deny-button';
+        denyButton.addEventListener('click', function() {
+            window.close(); // Close the window/tab on deny
+        });
+        consentBanner.appendChild(denyButton);
+
+        document.body.appendChild(consentBanner);
     }
 
-    // Call the function to show the tracking notification when the page loads
-    showTrackingNotification();
+    // Call the function to show the tracking consent banner when the page loads
+    showTrackingConsentBanner();
 }
+
 
 
 function attemploadsubvids() {
