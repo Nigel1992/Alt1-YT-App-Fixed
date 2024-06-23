@@ -70,7 +70,30 @@ function start() {
 
     // Hide the content of tab 3 initially
     elid('tabcontent3').style.display = 'none';
+
+    // Function to show tracking notification
+    function showTrackingNotification() {
+        var notification = document.createElement('div');
+        notification.className = 'tracking-notification';
+        notification.innerHTML = 'We use Google Analytics to measure usage on our site in order to improve user experience. This includes tracking anonymous data about your visit. We do not use Google Analytics for personalized advertising purposes. By continuing to use our site, you consent to our use of Google Analytics.</a>.';
+        document.body.appendChild(notification);
+
+        // Optional: Add a button to dismiss the notification if needed
+        var dismissButton = document.createElement('button');
+        dismissButton.textContent = 'Got it!';
+        dismissButton.className = 'dismiss-button';
+        notification.appendChild(dismissButton);
+
+        // Optional: Dismiss the notification when the button is clicked
+        dismissButton.addEventListener('click', function() {
+            notification.style.display = 'none';
+        });
+    }
+
+    // Call the function to show the tracking notification when the page loads
+    showTrackingNotification();
 }
+
 
 function attemploadsubvids() {
 	var a, b, func;
